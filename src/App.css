@@ -1,0 +1,11 @@
+body{
+display: grid;
+  justify-content: center;
+
+}
+  .allpizzas{
+    display: grid;
+    grid-template-columns:repeat(2, auto auto);
+    justify-content: center;
+    gap: 30px 30px;
+  }
