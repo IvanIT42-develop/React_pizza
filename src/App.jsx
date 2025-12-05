@@ -1,20 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './scss/app.scss';
 import PizzaCard from './components/PizzaCard/PizzaCard';
 import Categories from './components/Categories/Categories';
 import './App.css';
-import pizzas from './assets/pizza.json';
+
 import cheeseburger from './assets/img/cheeseburger.png';
 import cheesechicken from './assets/img/cheesechicken.png';
 import cheese from './assets/img/cheese.png';
 import shrimppizza from './assets/img/shrimppizza.png';
 import Sort from './components/Sort/Sort';
 import MyLoader from './components/Contentloader/ContentLoader';
+import axios from 'axios';
+import NotFound from './pages/NotFound';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import { AppContext } from './CreateContext';
 function App() {
   const [searchValue, setSearchValue] = useState('');
-  console.log(pizzas);
+  const [pizzas, setPizzas] = useState([]); // ← переименуйте для ясности
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get('https://68ea8ba9f1eeb3f856e79540.mockapi.io/dd/Pizzas');
+        setPizzas(data);
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching pizzas:', error);
+        setPizzas([]); // ← на случай ошибки устанавливаем пустой массив
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const imageMap = {
     cheeseburger: cheeseburger,
     cheesechicken: cheesechicken,
@@ -23,6 +48,9 @@ function App() {
   };
   return (
     <>
+    <AppContext.Provider value={{           pizzas: pizzas, 
+        isLoading: isLoading, 
+        imageMap: imageMap  }}>
       <div id="root">
         <div className="wrapper">
           <div className="header">
@@ -118,23 +146,7 @@ function App() {
           <Categories />
           <div className="content">
             <div className="container">
-              <div className="content__top">
-              <Sort></Sort>
-              </div>
-
-              <h2 className="content__title">Все пиццы</h2>
-
-              <div className="content__error-info">
-                <h2>Произошла ошибка 😕</h2>
-                <p>К сожалению, не удалось получить питсы. Попробуйте повторить попытку позже.</p>
-              </div>
-              <div>
-                <div className="allpizzas">
-                  {pizzas.map((obj, index) => {
-                    return <PizzaCard {...obj} imageMap={imageMap} key={index} />;
-                  })}
-                </div>
-              </div>
+              <Home />
               <ul className="Pagination_root__uwB0O">
                 <li className="previous disabled">
                   <a
@@ -183,6 +195,8 @@ function App() {
           </div>
         </div>
       </div>
+    </AppContext.Provider>
+      
     </>
   );
 }

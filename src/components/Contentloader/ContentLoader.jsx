@@ -10,12 +10,13 @@ const MyLoader = (props) => (
     backgroundColor="#e3e3e3"
     foregroundColor="#c4c4c4"
     {...props}
+    className="loader"
   >
     <circle  cx="134" cy="136" r="125" /> 
     <rect x="0" y="279" rx="10" ry="10" width="280" height="23" /> 
     <rect x="0" y="337" rx="10" ry="10" width="280" height="88" /> 
-    <rect x="0" y="436" rx="10" ry="10" width="95" height="30" /> 
-    <rect x="125" y="427" rx="24" ry="24" width="152" height="45" />
+    <rect x="0" y="445" rx="10" ry="10" width="95" height="30" /> 
+    <rect x="125" y="437.5" rx="24" ry="24" width="152" height="45" />
   </ContentLoader>
 )
 

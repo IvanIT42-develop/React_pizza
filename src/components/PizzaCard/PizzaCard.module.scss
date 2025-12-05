@@ -15,9 +15,9 @@
   width: 79px;
 }
 .pizzaCount {
-  background-color: orange;
-  color: white;
-  border: none !important;
+  background-color: #ffffff;
+  color:orange;
+  border: 1px solid orange ;
   border-radius: 8px;
   width: 150px;
   height: 30px;
@@ -26,10 +26,11 @@
   align-items: center;
   padding-left: 17.5px;
   text-align: center;
+  cursor: pointer;
 }
-.pizzaCount:hover {
-  background-color: white;
-  color: #000000;
+
+.pizzaCount:active{
+  color: #ffffff;
 }
 .plus:hover {
   color: orange;
@@ -37,11 +38,9 @@
 }
 .addBtn {
   padding-inline: 10px;
-  color: white;
+  color:orange;
 }
-.addBtn:hover {
-  color: #000000;
-}
+
 
 .paddingofsize {
   padding-right: 10px;
@@ -116,5 +115,16 @@
   &.active {
     background-color: #ffffff;
     color: black;
+  }
+}
+.count{
+  color: white;
+  background-color: orange; 
+  padding: 1px 7px;
+  border-radius: 50%;
+  
+  &:hover{
+    background-color: white;
+    color:orange
   }
 }
