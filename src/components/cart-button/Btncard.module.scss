@@ -1,0 +1,44 @@
+.cartButton {
+  display: flex;
+  align-items: center;
+  background-color: #fe5f1e;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  span {
+    color: white !important; // Прямое принуждение для всех span
+  }
+  &:hover {
+    background-color: #e2541a;
+  }
+  &:active {
+    border: none;
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 0 15px;
+}
+
+.cartIcon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count {
+  font-size: 14px;
+}
+@media (max-width: 370px) {
+  .cartButton {
+    width: 150px;
+    padding: 10px 20px;
+  }
+}

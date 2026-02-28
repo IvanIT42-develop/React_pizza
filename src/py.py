@@ -69,3 +69,30 @@ def gcd_euclidean_mod(a, b):
 
 # Пример использования
 print(gcd_euclidean_mod(48, 18))  # Вывод: 6
+n=int(input("Введите число:"))
+count=0
+result=""
+if n==0:
+    count=0
+    result="0"
+while n>0:
+    ost=n%2
+    if ost==1:
+        count=count+1
+    result=str(ost)+result
+    n=n//2
+print("Количество единиц в записе:",result+":",count)
+n=int(input("Введите число:"))
+count=0
+result=""
+if n==0:
+    count=0
+    result="0"
+while n>0:
+    ost=n%4
+    if ost==3:
+        count=count+1
+    result=str(ost)+result
+    n=n//4
+print("Количество троек в записе:",result+":",count)
+https://youtube.com/shorts/Q1oBFtGC7_o?si=OJrtecVFVE8k8fBC

@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg';
 import './scss/app.scss';
 import PizzaCard from './components/PizzaCard/PizzaCard';
 import Categories from './components/Categories/Categories';
-import './App.css';
+import './App.scss';
 
 // Импорт всех изображений
 import peperonniwithpepper from './assets/img/peperonniwithpepper.png';
@@ -30,6 +30,7 @@ import Home from './pages/Home';
 import { AppContext } from './CreateContext';
 import Header from './components/Header/Header';
 import Cart from './pages/Cart';
+import Btncard from './components/cart-button/cart-buttom';
 function App() {
   const [searchValue, setSearchValue] = useState('');
   const [pizzas, setPizzas] = useState([]);
@@ -85,7 +86,10 @@ function App() {
       }}>
 
     <div className='HomePage'>
-     <Header/>
+     <div className='headerwithbutton'>
+      <Header/>
+     <Btncard></Btncard>
+     </div>
         <Routes>
         <Route path="/" element={<Home />} />
         {/* Добавьте другие маршруты при необходимости */}

@@ -6,16 +6,14 @@ export default function Header() {
     <div>
         <Link to="/">
         <div className='imgwithdescription'>
-            <img src={pieceofpizza} alt="кусочек пиццы" width={100} />
+            <img src={pieceofpizza} alt="кусочек пиццы" className='heades_pizzaimage' />
            <div>
-             <h1>REACT PIZZA</h1>
-            <p>самая вкусная пицца во вселенной</p>
+             <h1 className='headers_h1'>REACT PIZZA</h1>
+            <h3 className='headers_h3'>самая вкусная пицца во вселенной</h3>
            </div>
         </div>
         </Link>
-      <div>
-        <button></button>
-      </div>
+      
     </div>
   )
 }

@@ -1,0 +1,471 @@
+body {
+  /* ← центрирует по горизонтали */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1800px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.HomePage {
+  background-color: white;
+  margin: auto;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1800px;
+  box-sizing: border-box;
+  /* display: grid; ← УБЕРИ ЭТО! */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pizza-item {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Базовый стиль */
+.allpizzas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(350px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.imgwithdescription {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.search-input {
+  padding: 5px 10px 5px 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 32px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 14px;
+  width: 300px;
+  padding-right: 35px !important;
+}
+
+.heades_pizzaimage {
+  width: 100px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.content__titleandsearchinput {
+  display: flex;
+  justify-content: space-between;
+  width: 50%; /* убедитесь, что контейнер занимает всю ширину */
+  margin-block: 50px;
+
+  h2 {
+    padding-bottom: 8px;
+  }
+}
+
+.content__title {
+  flex: 1; /* заголовок займет всё доступное пространство слева */
+  margin-right: 20px; /* отступ от поля ввода */
+  margin-block: 0px;
+}
+
+.headerwithbutton {
+  display: flex;
+  justify-content: space-between !important;
+  width: 47%;
+  align-items: center;
+  margin-inline: auto;
+}
+.h2_large {
+  font-size: 42px; /* Увеличенный размер, когда поиска нет */
+  font-weight: bold;
+}
+.deleteimg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 25px;
+  z-index: 10;
+  transition: all 0.2s ease-in-out; // Плавность эффекта
+
+  &:hover {
+    opacity: 0.6; // Делает иконку полупрозрачной (эффект затемнения на светлом фоне)
+    // Либо можно использовать:
+    // filter: brightness(0.7); // Реальное затемнение самой картинки
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.9); // Эффект нажатия (чуть уменьшается)
+  }
+}
+/* === ОБЪЕДИНЕННЫЕ ШИРИНЫ === */
+
+/* Общие ширины для headerwithbutton */
+.header-width-47 {
+  width: 47%;
+}
+.header-width-55 {
+  width: 55%;
+}
+.header-width-62 {
+  width: 62%;
+}
+.header-width-67 {
+  width: 67%;
+}
+.header-width-77 {
+  width: 77%;
+}
+.header-width-87 {
+  width: 87%;
+}
+
+/* Общие ширины для search-input */
+.search-width-300 {
+  width: 300px;
+}
+.search-width-200 {
+  width: 200px;
+}
+.search-width-170 {
+  width: 170px;
+}
+.search-width-140 {
+  width: 140px;
+}
+
+/* Общие ширины для content__titleandsearchinput */
+.title-search-width-50 {
+  width: 50%;
+}
+.title-search-width-60 {
+  width: 60%;
+}
+.title-search-width-70 {
+  width: 70%;
+}
+.title-search-width-90 {
+  width: 90%;
+}
+.title-search-width-100 {
+  width: 100%;
+}
+
+/* === МЕДИА-ЗАПРОСЫ === */
+
+/* Порядок от БОЛЬШЕГО к МЕНЬШЕМУ */
+@media (max-width: 2158px) {
+  .allpizzas {
+    grid-template-columns: repeat(4, minmax(320px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1930px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1594px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
+    gap: 25px;
+  }
+  .headerwithbutton {
+    width: 55%;
+  }
+}
+
+@media (max-width: 1458px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 25px;
+  }
+  .headerwithbutton {
+    width: 62%;
+  }
+}
+
+@media (max-width: 1370px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 1343px) {
+  .search-input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1234px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    gap: 17px;
+  }
+  .headerwithbutton {
+    width: 67%;
+  }
+}
+
+@media (max-width: 1146px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 15px;
+    max-width: 670px;
+    margin: 0 auto;
+  }
+  .headerwithbutton {
+    font-size: 1em;
+    width: 77%;
+  }
+}
+
+@media (max-width: 1041px) {
+  .search-input {
+    width: 170px;
+  }
+  .content__title {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 948px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .headerwithbutton {
+    font-size: 1em;
+    width: 87%;
+  }
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+  .categories li {
+    text-align: center;
+    padding: 8px;
+  }
+  .content__titleandsearchinput {
+    width: 60%;
+  }
+}
+
+@media (max-width: 832px) {
+  .content__titleandsearchinput {
+    width: 70%;
+  }
+}
+
+@media (max-width: 824px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    gap: 15px;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .heades_pizzaimage{
+    width: 67px;
+  }
+  .headers_h1{
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 690px) {
+  .allpizzas {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 10px;
+  }
+  .content__titleandsearchinput {
+    width: 90%;
+  }
+    .headerwithbutton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    gap: 15px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .headers_h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #333;
+  }
+
+  .headers_h3 {
+    width: auto;
+    max-width: 220px;
+    margin: 0 auto;
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .h2_large {
+    font-size: 1.8em;
+    margin: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .allpizzas {
+    max-width: 350px;
+    justify-items: center;
+    justify-content: center;
+  }
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+  .search-input {
+    width: 140px;
+  }
+    /* Меняем расположение h2 и инпута */
+  .content__titleandsearchinput {
+    display: flex;
+    flex-direction: column; /* Ставим вертикально */
+    align-items: center;    /* Центрируем по горизонтали */
+    width: 100%;            /* На всю ширину */
+    gap: 15px;              /* Отступ между h2 и инпутом */
+    margin-block: 30px;     /* Уменьшаем отступы */
+  }
+  
+  .content__title {
+    margin-right: 0;        /* Убираем правый отступ */
+    text-align: center;     /* Центрируем текст */
+    font-size: 1.5em;
+    width: 100%;            /* На всю ширину */
+  }
+  
+  /* Растягиваем инпут */
+  .search-input {
+    width: 100% !important;  /* На всю ширину контейнера */
+    max-width: 350px;        /* Но не больше 350px */
+  }
+  
+  /* Для контейнера с иконкой удаления */
+  .input_with_deletimg {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+  .deleteimg{
+    right: 15px;
+  }
+}
+
+@media (max-width: 418px) {
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Две равные колонки */
+    gap: 15px;
+    width: 100%;
+    max-width: 200px !important; /* 150px слишком мало для текста, попробуйте 280px */
+    justify-content: center;
+  }
+
+  .categories ul li {
+    width: 100%; /* Чтобы кнопки занимали всю ширину колонки */
+  }
+  .content__titleandsearchinput {
+    width: 100%;
+  }
+}
+@media (max-width: 370px) {
+  .headerwithbutton {
+    width: 100% !important;
+    padding: 0 5px;
+    gap: 8px; /* уменьшаем отступ между элементами */
+  }
+
+  .headers_h1 {
+    font-size: 1.5em; /* уменьшаем с 2em до 1.5em */
+   
+    padding: 0 5px;
+  }
+
+  .headers_h3 {
+    max-width: 170px; /* уменьшаем с 220px до 180px */
+    
+  }
+
+  .h2_large {
+    font-size: 1.3em; /* уменьшаем с 1.8em до 1.3em */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 0 5px;
+  }
+
+  /* если внутри есть какие-то кнопки/элементы */
+  .headerwithbutton > * {
+    max-width: 100%;
+  }
+}
+/* Дополнительные исправления */
+.h2_with_searchValue {
+  font-size: 24px; /* Обычный размер при поиске */
+}
+
+.input_with_deletimg {
+  position: relative;
+  display: inline-flex; /* ИЗМЕНИ на inline-flex, чтобы блок не был шире инпута */
+  align-items: center;
+}
+
+
