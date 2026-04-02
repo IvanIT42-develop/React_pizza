@@ -1,0 +1,98 @@
+.allpizzas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(350px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto;
+  justify-items: center; // Чтобы и скелетоны, и пиццы стояли по центру ячейки
+}
+
+/* === ТВОИ ОРИГИНАЛЬНЫЕ МЕДИА-ЗАПРОСЫ === */
+
+@media (max-width: 2158px) {
+  .allpizzas {
+    grid-template-columns: repeat(4, minmax(320px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1930px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1594px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1458px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1370px) {
+  .allpizzas {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 1234px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    gap: 17px;
+  }
+}
+
+@media (max-width: 1146px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 15px;
+    max-width: 670px;
+  }
+}
+
+@media (max-width: 948px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 15px;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 832px) {
+  .allpizzas {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    gap: 15px;
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 690px) {
+  .allpizzas {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .allpizzas {
+    max-width: 350px;
+    justify-content: center;
+  }
+}
+
+// Добавим класс для пустой выдачи, чтобы не забыть
+.cartEmpty {
+  text-align: center;
+  padding: 60px 20px;
+  width: 100%;
+}

@@ -1,0 +1,120 @@
+.content__titleandsearchinput {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-block: 50px;
+}
+
+.content__titleandsearchinput h2 {
+  padding-bottom: 8px;
+}
+
+.h2_large {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.h2_with_searchValue {
+  font-size: 24px;
+}
+
+.input_with_deletimg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 5px 10px 5px 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 32px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="gray" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 14px;
+  max-width: 300px;
+  padding-right: 35px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.deleteimg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 25px;
+  z-index: 10;
+  transition: all 0.2s ease-in-out;
+}
+
+.deleteimg:hover {
+  opacity: 0.6;
+}
+
+.deleteimg:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+/* Адаптив */
+@media (max-width: 1041px) {
+  .search-input {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 948px) {
+  .content__titleandsearchinput {
+    width: 60%;
+  }
+}
+
+@media (max-width: 832px) {
+  .content__titleandsearchinput {
+    width: 70%;
+  }
+}
+
+@media (max-width: 690px) {
+  .content__titleandsearchinput {
+    width: 90%;
+  }
+}
+
+@media (max-width: 580px) {
+  .content__titleandsearchinput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-block: 30px;
+  }
+
+  .input_with_deletimg {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .deleteimg {
+    right: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .h2_large {
+    font-size: 1.3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 0 5px;
+  }
+}

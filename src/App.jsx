@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './scss/app.scss';
-import PizzaCard from './components/PizzaCard/PizzaCard';
+
 import Categories from './components/Categories/Categories';
 import './App.scss';
 
@@ -21,8 +21,6 @@ import bbqchicken from './assets/img/bbqchicken.png';
 import seasons from './assets/img/seasons.png';
 import sweet_sour_chicken from './assets/img/sweet_sour_chicken.png';
 
-import Sort from './components/Sort/Sort';
-import MyLoader from './components/Contentloader/ContentLoader';
 import axios from 'axios';
 import NotFound from './pages/NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -31,6 +29,7 @@ import { AppContext } from './CreateContext';
 import Header from './components/Header/Header';
 import Cart from './pages/Cart';
 import Btncard from './components/cart-button/cart-buttom';
+import Headerwithbutton from './components/Headerwithbutton/Headerwithbutton';
 function App() {
   const [searchValue, setSearchValue] = useState('');
   const [pizzas, setPizzas] = useState([]);
@@ -84,20 +83,15 @@ function App() {
         searchValue: searchValue,
         setSearchValue: setSearchValue,
       }}>
-
-    <div className='HomePage'>
-     <div className='headerwithbutton'>
-      <Header/>
-     <Btncard></Btncard>
-     </div>
+      <div className="HomePage">
+        <Headerwithbutton />
         <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Добавьте другие маршруты при необходимости */}
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-  </div>
-
+          <Route path="/" element={<Home />} />
+          {/* Добавьте другие маршруты при необходимости */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </AppContext.Provider>
   );
 }

@@ -1,0 +1,62 @@
+.categories .active {
+  /* Добавьте нужные стили для активной категории */
+  background-color: #007bff;
+  color: white;
+  /* или другие стили */
+}
+.categories ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.categories li {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.categories li:hover {
+  background-color: #f0f0f0;
+}
+/* Основные стили для categories находятся в медиа-запросах */
+@media (max-width: 948px) {
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+  .categories li {
+    text-align: center;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 418px) {
+  .categories ul {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .categories ul li {
+    width: 100%;
+  }
+} 

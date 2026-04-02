@@ -1,0 +1,49 @@
+.imgwithdescription {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.heades_pizzaimage {
+  width: 100px;
+}
+
+.headers_h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.headers_h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color:#333;
+}
+
+/* Адаптив */
+@media (max-width: 832px) {
+  .heades_pizzaimage {
+    width: 67px;
+  }
+}
+
+@media (max-width: 690px) {
+  .headers_h3 {
+    max-width: 220px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 370px) {
+  .headers_h1 {
+    font-size: 1.5rem;
+    padding: 0 5px;
+  }
+
+  .headers_h3 {
+    max-width: 170px;
+  }
+}

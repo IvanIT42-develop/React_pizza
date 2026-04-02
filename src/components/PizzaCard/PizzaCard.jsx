@@ -14,7 +14,7 @@ function PizzaCard({ price, title, imageUrl, sizes, types, imageMap, id }) {
   return (
     <div className={classes.parent} data-id={id}>
       <div className={classes.parentofimg}>
-        <img src={imageSrc} alt={title} width={260} className={classes.pizzaimage}/>
+        <img src={imageSrc} alt={title}  className={classes.pizzaimage}/>
       </div>
       <h3 className={classes.title}>{title}</h3>
 
