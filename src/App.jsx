@@ -27,7 +27,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { AppContext } from './CreateContext';
 import Header from './components/Header/Header';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart';
 import Btncard from './components/cart-button/cart-buttom';
 import Headerwithbutton from './components/Headerwithbutton/Headerwithbutton';
 function App() {
@@ -82,9 +82,11 @@ function App() {
         imageMap: imageMap,
         searchValue: searchValue,
         setSearchValue: setSearchValue,
+        setPizzas: setPizzas,
       }}>
       <div className="HomePage">
         <Headerwithbutton />
+        <hr style={{ border: '0', borderTop: '1px solid #d82c2c', margin: '40px 0' }} />
         <Routes>
           <Route path="/" element={<Home />} />
           {/* Добавьте другие маршруты при необходимости */}

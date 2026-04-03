@@ -4,6 +4,7 @@ import { AppContext } from '../CreateContext';
 import Searchinputandcontent_title from '../components/Search-input/Search-input';
 import Pizzaskeleton from '../components/Pizzaskeleton/Pizzaskeleton';
 import PizzaList from '../components/PizzaList/PizzaList'; // Импортируем новый компонент
+import CategorieswithSort from '../components/CategorieswithSort/CategorieswithSort';
 
 function Home() {
   const { pizzas, imageMap, isLoading, searchValue } = useContext(AppContext);
@@ -14,6 +15,8 @@ function Home() {
 
   return (
     <div className="HomePage">
+      
+      <CategorieswithSort/>
       <Searchinputandcontent_title />
 
       <div className="parentofpizzas">

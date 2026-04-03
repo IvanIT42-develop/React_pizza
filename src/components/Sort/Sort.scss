@@ -1,53 +1,82 @@
 .sort {
-  position: relative;
-  
+  position: relative; // База для позиционирования попапа
+  display: inline-block;
+  user-select: none; // Чтобы текст не выделялся при частых кликах
+
   &__label {
     display: flex;
     align-items: center;
-    
+    cursor: pointer;
+
     svg {
       margin-right: 8px;
+      transition: transform 0.2s ease-in-out; // Плавный поворот
+
+      &.rotated {
+        transform: rotate(180deg); // Переворот стрелки
+      }
     }
-    
+
     b {
       margin-right: 8px;
+      font-size: 14px;
     }
-    
+
     span {
-      color: #FE5F1E;
-      border-bottom: 1px dashed #FE5F1E;
-      cursor: pointer;
+      color: #fe5f1e;
+      border-bottom: 1px dashed #fe5f1e;
+      font-size: 14px;
     }
   }
-  
+
   &__popup {
     position: absolute;
     right: 0;
-    margin-top: 15px;
-    background: #FFFFFF;
+    top: calc(100% + 10px); // Четкое позиционирование под лейблом
+    background: #ffffff;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
     border-radius: 10px;
-    overflow: hidden;
     padding: 10px 0;
     width: 160px;
+    z-index: 50; // Гарантированно поверх карточек пицц
     
+    // Анимация появления
+    animation: fadeIn 0.2s ease-out;
+
     ul {
-      overflow: hidden;
-      
-      .li{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
         padding: 12px 20px;
         cursor: pointer;
-        
-        &.active,
+        font-size: 14px;
+        transition: all 0.1s ease-in-out;
+
         &:hover {
           background: rgba(254, 95, 30, 0.05);
+          color: #fe5f1e;
         }
-        
+
         &.active {
           font-weight: bold;
-          color: #FE5F1E;
+          color: #fe5f1e;
+          background: rgba(254, 95, 30, 0.1);
         }
       }
     }
+  }
+}
+
+// Плавное появление окна
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -8,6 +8,13 @@
   width: 100%;
   max-width: 47%;
 }
+.headerwithbutton {
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали (по центру) */
+  justify-content: flex-start !important; /* Прижать всё к началу (лево) */
+  gap: 20px; /* Расстояние между хедером и кнопкой */
+  padding: 40px; /* Отступы от краев страницы, если нужно */
+}
 
 /* Изменения начинаются здесь */
 @media (max-width: 1594px) {
