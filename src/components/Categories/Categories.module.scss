@@ -1,62 +1,66 @@
-.categories .active {
-  /* Добавьте нужные стили для активной категории */
-  background-color: #007bff;
-  color: white;
-  /* или другие стили */
-}
-.categories ul {
-  list-style: none;
-  display: flex;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-}
 
-.categories li {
-  cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
 
-.categories li:hover {
-  background-color: #f0f0f0;
-}
-/* Основные стили для categories находятся в медиа-запросах */
-@media (max-width: 948px) {
-  .categories ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
+.categories {
+  ul {
+    list-style: none;
+    display: flex;
     gap: 10px;
+    padding: 0;
+    margin: 0;
+
+    li {
+      cursor: pointer;
+      padding: 13px 30px;
+      background-color: #f9f9f9;
+      color: #2b2b2b;
+      border-radius: 30px;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.1s ease-in-out;
+      
+      // Чтобы кнопки всегда были одинаковой ширины
+      flex: 1; 
+      box-sizing: border-box;
+
+      
+
+      &:hover {
+        background-color: darken(#f9f9f9, 2%);
+      }
+
+      // Состояние зажатой мышки (физический клик)
+      &:active {
+        background-color: darken(#f9f9f9, 5%);
+        transform: translateY(1px);
+      }
+
+      // Класс для активной категории (выбранной через React)
+      &.active {
+        background-color: #282828;
+        color: #fff;
+      }
+    }
   }
-  .categories li {
-    text-align: center;
-    padding: 8px;
+
+  // Адаптивность
+  @media (max-width: 948px) {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 418px) {
+    ul {
+      grid-template-columns: 1fr;
+      max-width: 240px;
+      margin-inline: auto;
+    }
   }
 }
-
-@media (max-width: 500px) {
-  .categories ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 10px;
-  }
-}
-
-@media (max-width: 418px) {
-  .categories ul {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 15px;
-    width: 100%;
-    max-width: 200px;
-    justify-content: center;
-    margin-inline: auto;
-  }
-
-  .categories ul li {
-    width: 100%;
-  }
-} 

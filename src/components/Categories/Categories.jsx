@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from "./Categories.module.scss"
 function Categories() {
   const [activeCategory, setActiveCategory] = useState(0);
 
@@ -8,10 +8,10 @@ function Categories() {
   };
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
   return (
-    <div className="categories">
+    <div className={styles.categories}>
       <ul>
         {categories.map((categoryName, index) => (
-          <li onClick={()=>{setCategory(index)}} key={index} className={activeCategory===index? 'active':''}>{categoryName}</li>
+          <li onClick={()=>{setCategory(index)}} key={index} className={activeCategory === index ? styles.active:''}>{categoryName}</li>
         ))}
       </ul>
     </div>

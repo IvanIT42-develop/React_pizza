@@ -1,3 +1,10 @@
 .CategorieswithSort{
-    
+    display: flex;
+    align-items: center;
+    gap:56px
+}
+@media (max-width:1200px){
+    .CategorieswithSort{
+        flex-direction: column;
+    }
 }

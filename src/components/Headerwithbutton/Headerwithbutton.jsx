@@ -8,11 +8,16 @@ function Headerwithbutton() {
   const location = useLocation(); // Получаем объект с текущим адресом
 
   return (
+    <>
     <div className={`${location.pathname === '/' ? styles.headerwithbutton : styles.headerwithoutbutton}` }>
       <Header />
       {/* Проверка: если мы на главной ('/'), показываем кнопку */}
       {location.pathname === '/' && <Btncard />}
+      
     </div>
+    <hr className={styles.line} />
+    </>
+    
   );
 }
 

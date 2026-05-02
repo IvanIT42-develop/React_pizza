@@ -1,5 +1,10 @@
 /* Headerwithbutton.module.css */
-
+.line {
+  border: 0;               /* Сбрасываем дефолтные стили браузера */
+  border-top: 1px solid rgb(215, 208, 208); /* Рисуем свою линию */
+  margin: 0;               /* Убираем внешние отступы */
+  width: 100%;             /* Растягиваем на весь экран */
+}
 .headerwithbutton {
   display: flex;
   justify-content: space-between;
@@ -14,6 +19,8 @@
   justify-content: flex-start !important; /* Прижать всё к началу (лево) */
   gap: 20px; /* Расстояние между хедером и кнопкой */
   padding: 40px; /* Отступы от краев страницы, если нужно */
+ 
+  
 }
 
 /* Изменения начинаются здесь */

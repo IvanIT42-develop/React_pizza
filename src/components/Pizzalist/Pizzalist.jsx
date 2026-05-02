@@ -3,6 +3,7 @@ import PizzaCard from '../PizzaCard/PizzaCard';
 import styles from './PizzaList.module.scss'; // Импорт стилей
 
 function PizzaList({ items, imageMap }) {
+
   if (items.length === 0) {
     return (
       <div className={styles.cartEmpty}>
@@ -20,6 +21,7 @@ function PizzaList({ items, imageMap }) {
           {...obj} 
           imageMap={imageMap} 
           id={obj.id} 
+          kmjkjmdf={items}
         />
       ))}
     </div>

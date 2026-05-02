@@ -21,7 +21,7 @@ function PizzaCard({ price, title, imageUrl, sizes, types, imageMap, id }) {
       title,
       price,
       imageUrl: imageSrc, // используем уже готовую переменную imageSrc
-    });
+      count:pizzaCount    });
   };
   return (
     <div className={classes.parent} data-id={id}>

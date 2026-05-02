@@ -39,7 +39,7 @@ function App() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const { data } = await axios.get('https://68ea8ba9f1eeb3f856e79540.mockapi.io/dd/Pizzas');
+        const { data } = await axios.get('https://e5925c51acc6c42b.mokky.dev/pizzaCards');
 
         const formattedData = data.map((pizza) => ({
           ...pizza,
@@ -75,26 +75,31 @@ function App() {
   };
 
   return (
-    <AppContext.Provider
-      value={{
-        pizzas: pizzas,
-        isLoading: isLoading,
-        imageMap: imageMap,
-        searchValue: searchValue,
-        setSearchValue: setSearchValue,
-        setPizzas: setPizzas,
-      }}>
-      <div className="HomePage">
-        <Headerwithbutton />
-        <hr style={{ border: '0', borderTop: '1px solid #d82c2c', margin: '40px 0' }} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* Добавьте другие маршруты при необходимости */}
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-    </AppContext.Provider>
+    <>
+      <AppContext.Provider
+        value={{
+          pizzas: pizzas,
+          isLoading: isLoading,
+          imageMap: imageMap,
+          searchValue: searchValue,
+          setSearchValue: setSearchValue,
+          setPizzas: setPizzas,
+        }}>
+        <div className="HomePage">
+          <div className="header-layout">
+            {/* Добавляем эту обертку */}
+            <Headerwithbutton />
+          </div>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* Добавьте другие маршруты при необходимости */}
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </AppContext.Provider>
+    </>
   );
 }
 

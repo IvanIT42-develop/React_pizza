@@ -44,3 +44,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+.header-layout {
+  width: 100%;
+  align-self: stretch; /* Игнорирует align-items: center родителя */
+  display: block;      /* Или flex, если нужно внутри еще что-то ровнять */
+}
