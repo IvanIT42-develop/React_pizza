@@ -7,12 +7,15 @@ import PizzaList from '../components/Pizzalist/Pizzalist';
 import CategorieswithSort from '../components/CategorieswithSort/CategorieswithSort';
 
 function Home() {
-  const { pizzas, imageMap, isLoading, searchValue } = useContext(AppContext);
+  
+  const { pizzas, imageMap, isLoading, searchValue,activeCategory, setActiveCategory } = useContext(AppContext);
  
   const filteredpizzas = pizzas.filter((item) =>
     item.title.toLowerCase().includes(searchValue.toLowerCase()),
   );
-
+const finalPizzas = activeCategory > 0
+    ? filteredpizzas.filter((item) => item.category === activeCategory)
+    : filteredpizzas;
   return (
     <div className="HomePage">
       
@@ -23,7 +26,7 @@ function Home() {
         {isLoading ? (
           <Pizzaskeleton />
         ) : (
-          <PizzaList items={filteredpizzas} imageMap={imageMap} />
+          <PizzaList items={finalPizzas} imageMap={imageMap} />
         )}
       </div>
       

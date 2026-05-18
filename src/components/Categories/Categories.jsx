@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles from "./Categories.module.scss"
+import { AppContext } from '../../CreateContext';
+import { useContext } from 'react';
 function Categories() {
-  const [activeCategory, setActiveCategory] = useState(0);
-
+  
+ const{activeCategory, setActiveCategory}=useContext(AppContext)
   const setCategory = (index) => {
     setActiveCategory(index);
   };

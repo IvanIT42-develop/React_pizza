@@ -65,7 +65,20 @@ function Cart() {
       alert('Не удалось добавить товар');
     }
   };
-
+const del = async(obj)=>{
+  const itemsToDelete=cartItems.find((item) => item.title === obj.title);
+  try{
+    await Promise.all(
+    itemsToDelete.map((item)=>{
+      axios.delete(`https://e5925c51acc6c42b.mokky.dev/cartItems/${item.id}`)
+    })
+  )
+  setCartItems((prev)=>prev.filter((item)=> item.title== obj.title))
+  }
+  catch(error){
+    alert("Не удалось удалить товар из корзины")
+  }
+}
   return (
     <div className={styles.cartWrapper}>
       <h2 className={styles.title}>Корзина</h2>

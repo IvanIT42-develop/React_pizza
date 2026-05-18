@@ -34,7 +34,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+const [activeCategory, setActiveCategory] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,6 +84,8 @@ function App() {
           searchValue: searchValue,
           setSearchValue: setSearchValue,
           setPizzas: setPizzas,
+          activeCategory: activeCategory, 
+          setActiveCategory:setActiveCategory
         }}>
         <div className="HomePage">
           <div className="header-layout">
