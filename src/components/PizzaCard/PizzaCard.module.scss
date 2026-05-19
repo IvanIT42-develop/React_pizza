@@ -7,7 +7,7 @@
   background: white;
   border-radius: 20px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
+  
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
-
+  
   @media (max-width: 450px) {
     height: 200px; // Уменьшаем область картинки на мобилках
   }
@@ -42,7 +42,7 @@
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-
+  
   @media (max-width: 450px) {
     max-width: 180px; // Сама пицца становится меньше
   }
@@ -61,12 +61,19 @@
   align-items: center;
   justify-content: space-between; // Цена слева, кнопка справа
   margin-top: auto; // Прижимает блок к низу карточки
+  gap: 5px; // Гарантирует минимальный зазор, чтобы элементы не слипались
 }
 
 .price {
   font-weight: bold;
   font-size: 22px;
   margin: 0;
+  white-space: nowrap; // Запрещаем цене переноситься на вторую строку
+
+  // ПРАВКА: Уменьшаем цену на экранах меньше 1050px
+  @media (max-width: 1050px) {
+    font-size: 18px;
+  }
 }
 
 .pizzaCount {
@@ -82,10 +89,15 @@
   transition: all 0.15s ease-in-out;
   user-select: none;
 
+  // ПРАВКА: Уменьшаем внутренние отступы кнопки на планшетах
+  @media (max-width: 1050px) {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
   &:hover {
     background-color: #fe5f1e;
     color: #fff;
-
     .addBtn, .plus, .count {
       color: #fff;
       border-color: #fff;
@@ -99,6 +111,11 @@
 
 .addBtn {
   margin: 0 8px;
+
+  // ПРАВКА: Уменьшаем боковые отступы у текста "Добавить"
+  @media (max-width: 1050px) {
+    margin: 0 4px;
+  }
 }
 
 .count {
@@ -129,7 +146,7 @@
     border-radius: 5px;
     transition: all 0.2s ease;
     user-select: none;
-
+    
     &.active {
       background-color: #fff;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
@@ -137,4 +154,6 @@
   }
 }
 
-.typesOfPizza { margin-bottom: 5px; }
+.typesOfPizza {
+  margin-bottom: 5px;
+}
