@@ -101,6 +101,8 @@
   cursor: pointer;
   transition: all 0.15s ease-in-out;
   user-select: none;
+  padding: 0; /* Сбрасываем внутренние отступы браузера */
+  padding-bottom: 3px; /* Мягко прижимаем значки вниз, чтобы они встали ровно по центру */
 }
 
 .countControl button:hover {
