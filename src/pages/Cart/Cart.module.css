@@ -1,226 +1,342 @@
 /* Главный контейнер всей страницы корзины */
 .cartWrapper {
-  max-width: 850px;
-  margin: 80px auto; /* Мощный отступ сверху и снизу всей страницы */
-  padding: 0 30px; /* Боковые отступы страницы */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 850px;
+    margin: 80px auto;
+    padding: 0 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Большой жирный заголовок "Корзина" */
 .title {
-  font-size: 36px;
-  font-weight: 800;
-  margin-top: 0;
-  margin-bottom: 50px; /* Отодвигаем заголовок от списка товаров */
-  color: #000000;
-  letter-spacing: 0.5px;
+    font-size: 36px;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 50px;
+    color: #000000;
+    letter-spacing: 0.5px;
 }
 
 /* Контейнер-список, в котором лежат все пиццы */
 .itemsList {
-  display: flex;
-  flex-direction: column;
-  gap: 25px; /* Солидный зазор между самими карточками пицц */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 /* ОТДЕЛЬНАЯ БОЛЬШАЯ КАРТОЧКА ПИЦЦЫ */
 .cartItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Расталкивает контент по краям */
-  padding: 35px 40px; /* Жирнейшие внутренние отступы со всех сторон */
-  background: #ffffff;
-  border-radius: 24px; /* Мягкие скругленные углы карточки */
-  border: 1px solid #f3f3f3;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Легкая современная тень */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px 40px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #f3f3f3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cartItem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
 
 /* Картинка пиццы внутри карточки */
 .itemImg {
-  object-fit: contain;
-  margin-right: 35px; /* Большое расстояние от картинки до текста */
-  width: 90px;
-  height: 90px;
+    object-fit: contain;
+    margin-right: 35px;
+    width: 90px;
+    height: 90px;
 }
 
 /* Внутренний контейнер: Название и Цена */
 .itemInfo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1; /* Заставляет блок занять всю свободную ширину */
-  padding-right: 60px; /* Огромный зазор справа перед кнопками управления */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    padding-right: 60px;
 }
 
 /* Название пиццы */
 .itemInfo p {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-  color: #111111;
-  line-height: 1.3;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: #111111;
+    line-height: 1.3;
 }
 
 /* Цена пиццы (например, 803 руб.) */
 .itemInfo b {
-  font-size: 22px;
-  font-weight: 800;
-  color: #000000;
-  white-space: nowrap;
-  margin-left: 20px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000000;
+    white-space: nowrap;
+    margin-left: 20px;
 }
 
 /* Блок управления количеством (- / 38 шт. / +) */
 .countControl {
-  display: flex;
-  align-items: center;
-  gap: 18px; /* Свободный отступ между кнопками и цифрой */
-  min-width: 150px;
-  justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 150px;
+    justify-content: flex-end;
 }
 
 /* Круглые стильные кнопки плюс и минус */
 .countControl button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 2px solid #fe5f1e; /* Оранжевый ободок */
-  background-color: #ffffff;
-  color: #fe5f1e;
-  border-radius: 50%; /* Идеальный круг */
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-  user-select: none;
-  padding: 0; /* Сбрасываем внутренние отступы браузера */
-  padding-bottom: 3px; /* Мягко прижимаем значки вниз, чтобы они встали ровно по центру */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #fe5f1e;
+    background-color: #ffffff;
+    color: #fe5f1e;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    user-select: none;
+    padding: 0;
+    padding-bottom: 3px;
+    outline: none !important;
 }
 
 .countControl button:hover {
-  background-color: #fe5f1e;
-  color: #ffffff;
+    background-color: #fe5f1e;
+    color: #ffffff;
 }
 
 .countControl button:active {
-  transform: scale(0.92);
+    transform: scale(0.92);
 }
 
 /* Текст счетчика (например, "38 шт.") */
 .countBadge {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111111;
-  white-space: nowrap;
-  min-width: 50px;
-  text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111111;
+    white-space: nowrap;
+    min-width: 50px;
+    text-align: center;
 }
 
 /* Стили для пустой корзины */
 .emptyCart {
-  text-align: center;
-  padding: 100px 20px;
+    text-align: center;
+    padding: 100px 20px;
 }
 
 .emptyMessage {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #2c2c2c;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #2c2c2c;
+}
+
+/* ========================================== */
+/* СТИЛИ ДЛЯ НИЖНЕГО БЛОКА КОРЗИНЫ */
+/* ========================================== */
+
+/* Общая обертка нижнего блока (итоги + кнопки) */
+.cartBottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f4f4f4;
+    gap: 25px;
+}
+
+/* Строчка с текстом "Всего пицц" и "Сумма заказа" */
+.cartBottomDetails {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    color: #000000;
+}
+
+.cartBottomDetails b {
+    font-weight: 700;
+}
+
+/* Выделяем итоговую сумму фирменным оранжевым цветом */
+.totalPrice {
+    color: #fe5f1e;
+    font-weight: 800;
+}
+
+/* Строчка, в которой лежат две кнопки действий */
+.cartBottomButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Кнопка "Оплатить сейчас" в стиле Додо/Аршакова */
+.checkoutBtn {
+    padding: 16px 32px;
+    background-color: #fe5f1e;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    user-select: none;
+    outline: none !important;
+}
+
+.checkoutBtn:hover {
+    background-color: #e24f14;
+}
+
+.checkoutBtn:active {
+    transform: scale(0.98);
+}
+
+/* Кнопка "Вернуться назад" в стиле макета */
+.backBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background-color: transparent;
+    border: 1px solid #d3d3d3;
+    border-radius: 30px;
+    color: #c3c3c3;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    user-select: none;
+    outline: none !important;
+}
+
+.backBtn:hover {
+    background-color: #f9f9f9;
+    color: #2c2c2c;
+    border-color: #2c2c2c;
+    
+}
+.backBtn:hover .leftpath {
+  transform: translateX(-4px); /* Мягко сдвигаем стрелочку влево на 4 пикселя */
+}
+
+/* Обязательно добавь плавность для самой картинки в её базовый класс, 
+   чтобы стрелочка двигалась не дёргано, а плавно скользила */
+.leftpath {
+  transition: transform 0.15s ease-in-out;
+}
+.backBtn:active {
+    transform: scale(0.97);
+}
+
+/* ========================================== */
+/* ДОПИСЫВАЕМ АДАПТИВ ДЛЯ НИЖНЕГО БЛОКА */
+/* ========================================== */
+@media (max-width: 720px) {
+    .cartBottomDetails {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .cartBottomButtons {
+        flex-direction: column-reverse;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .checkoutBtn {
+        width: 100%;
+        text-align: center;
+        padding: 14px;
+        outline: none !important;
+    }
 }
 
 /* ========================================== */
 /* ЖЕСТКИЙ АДАПТИВ ПОД МОБИЛКИ (Меньше 768px) */
 /* ========================================== */
+
 /* Промежуточный адаптив для планшетов, чтобы строчка не ломалась */
 @media (max-width: 950px) {
-  .cartItem {
-    padding: 25px 20px; /* Уменьшаем внутренние отступы самой карточки */
-  }
-
-  .itemImg {
-    margin-right: 20px; /* Сдвигаем картинку ближе к тексту */
-    width: 75px;
-    height: 75px;
-  }
-
-  .itemInfo {
-    padding-right: 25px; /* Защитный отступ справа уменьшаем в 2 раза */
-  }
-
-  .itemInfo p {
-    font-size: 18px; /* Чуть уменьшаем название пиццы */
-  }
-
-  .itemInfo b {
-    font-size: 18px; /* Чуть уменьшаем цену */
-  }
-
-  .countControl {
-    min-width: 120px; /* Сужаем блок с кнопками */
-    gap: 12px;
-  }
-
-  .countControl button {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-
-  .countBadge {
-    font-size: 16px;
-  }
+    .cartItem {
+        padding: 25px 20px;
+    }
+    .itemImg {
+        margin-right: 20px;
+        width: 75px;
+        height: 75px;
+    }
+    .itemInfo {
+        padding-right: 25px;
+    }
+    .itemInfo p {
+        font-size: 18px;
+    }
+    .itemInfo b {
+        font-size: 18px;
+    }
+    .countControl {
+        min-width: 120px;
+        gap: 12px;
+    }
+    .countControl button {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        outline: none !important;
+    }
+    .countBadge {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 768px) {
-  .cartWrapper {
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-
-  .title {
-    font-size: 28px;
-    margin-bottom: 35px;
-    text-align: center;
-  }
-
-  .cartItem {
-    flex-direction: column; /* Элементы встают друг под друга */
-    gap: 25px;
-    text-align: center;
-    padding: 35px 20px;
-  }
-
-  .itemImg {
-    margin-right: 0; /* Обнуляем боковой отступ на мобилке */
-    width: 110px;
-    height: 110px;
-  }
-
-  .itemInfo {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding-right: 0; /* Убираем правый паддинг */
-    width: 100%;
-  }
-
-  .itemInfo b {
-    margin-left: 0;
-    font-size: 20px;
-  }
-
-  .countControl {
-    justify-content: center;
-    width: 100%;
-    margin-top: 5px;
-  }
+    .cartWrapper {
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    .title {
+        font-size: 28px;
+        margin-bottom: 35px;
+        text-align: center;
+    }
+    .cartItem {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+        padding: 35px 20px;
+    }
+    .itemImg {
+        margin-right: 0;
+        width: 110px;
+        height: 110px;
+    }
+    .itemInfo {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding-right: 0;
+        width: 100%;
+    }
+    .itemInfo b {
+        margin-left: 0;
+        font-size: 20px;
+    }
+    .countControl {
+        justify-content: center;
+        width: 100%;
+        margin-top: 5px;
+    }
 }

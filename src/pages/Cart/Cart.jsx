@@ -6,21 +6,24 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addItem } from '../../store/slices/createSlice';
+import { useState } from 'react';
+import { minusItem } from '../../store/slices/createSlice';
+import leftpath from '../../assets/img/leftpath.png';
+import { Link } from 'react-router-dom';
+
 function Cart() {
   const { cartItems, setCartItems } = useCart();
+  const { totalPrice, items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
+  const [isUpdating, setIsUpdating] = useState(false);
   // 1. Группируем товары перед отрисовкой
-  // Создаем массив, где одинаковые товары объединены, и у них есть поле count
   const groupedItems = cartItems.reduce((acc, item) => {
-    // Ищем, есть ли уже такой товар в нашем аккумуляторе (по id или title)
-    const existingItem = acc.find((target) => target.title === item.title);
-
+    const existingItem = acc.find(
+      (target) => target.title === item.title && target.size === item.size,
+    );
     if (existingItem) {
-      // Если есть — увеличиваем счетчик
       existingItem.count += 1;
     } else {
-      // Если нет — добавляем новый объект с count: 1
       acc.push({ ...item, count: 1 });
     }
     return acc;
@@ -35,76 +38,107 @@ function Cart() {
       alert('Ошибка при удалении');
     }
   };
+
   const handleMinus = async (obj) => {
     if (obj.count === 1) {
-      // Если остался один — удаляем из БД и стейта
       await deleteCartItem(obj.id);
+      dispatch(minusItem(itemToDelete.id));
     } else {
-      // Если больше одного — нам нужно найти ID ОДНОГО такого товара в исходном массиве cartItems
-      // и удалить его (или изменить количество в БД, если ваша база это поддерживает)
-
-      // В текущей архитектуре проще всего найти индекс последнего вхождения такого товара:
-      const itemToDelete = cartItems.find((item) => item.title === obj.title);
+      const itemToDelete = cartItems.find(
+        (item) => item.title === obj.title && item.size === obj.size,
+      );
       if (itemToDelete) {
         await deleteCartItem(itemToDelete.id);
+        dispatch(minusItem(itemToDelete.id));
       }
     }
   };
-   const handlePlus = async (obj) => {
+
+  const handlePlus = async (obj) => {
+    if (isUpdating) return;
     try {
+      setIsUpdating(true);
       const { id, count, ...newItem } = obj;
       const { data } = await axios.post('https://e5925c51acc6c42b.mokky.dev/cartItems', newItem);
-      
-      // Сначала обновляем Redux (чтобы цена в шапке прыгнула)
       dispatch(addItem(data));
-      
-      // СРАЗУ обновляем локальный список, чтобы groupedItems пересчитался
-      setCartItems((prev) => [...prev, data]); 
-      
+      setCartItems((prev) => [...prev, data]);
     } catch (error) {
       alert('Не удалось добавить товар');
+    } finally {
+      setIsUpdating(false);
     }
   };
-const del = async(obj)=>{
-  const itemsToDelete=cartItems.find((item) => item.title === obj.title);
-  try{
-    await Promise.all(
-    itemsToDelete.map((item)=>{
-      axios.delete(`https://e5925c51acc6c42b.mokky.dev/cartItems/${item.id}`)
-    })
-  )
-  setCartItems((prev)=>prev.filter((item)=> item.title== obj.title))
-  }
-  catch(error){
-    alert("Не удалось удалить товар из корзины")
-  }
-}
+
+  const del = async (obj) => {
+    const itemsToDelete = cartItems.filter(
+      (item) => item.title === obj.title && item.size === obj.size,
+    );
+    try {
+      await Promise.all(
+        itemsToDelete.map((item) => {
+          return axios.delete(`https://e5925c51acc6c42b.mokky.dev/cartItems/${item.id}`);
+        }),
+      );
+      setCartItems((prev) =>
+        prev.filter((item) => !(item.title === obj.title && item.size === obj.size)),
+      );
+    } catch (error) {
+      alert('Не удалось удалить товар из корзины');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  // УДАЛИЛИ КРИВОЙ КУСОК С ПЕРЕМЕННОЙ pizzaCount
+
   return (
     <div className={styles.cartWrapper}>
       <h2 className={styles.title}>Корзина</h2>
-
       {groupedItems.length > 0 ? (
         <div className={styles.itemsList}>
           {groupedItems.map((obj) => (
             <div key={obj.id} className={styles.cartItem}>
               <img className={styles.itemImg} width={70} src={obj.imageUrl} alt={obj.title} />
               <div className={styles.itemInfo}>
-                <p>{obj.title}</p>
-                <b>{obj.price} руб.</b>
+                <p>
+                  {obj.title} ({obj.size} см)
+                </p>{' '}
+                {/* Добавили вывод размера в название */}
+                <b>{(obj.prices?.[obj.size] || 0) * obj.count} руб.</b>
               </div>
-              <div className={styles.countControl}>
-                <button
-                  onClick={() => {
-                    handleMinus(obj);
-                  }}>
-                  -
-                </button>
-                {/* 2. Выводим количество */}
+              <div className={styles?.countControl || styles.countControl}>
+                <button onClick={() => handleMinus(obj)}> - </button>
+                {/* ИСПРАВЛЕНО: Теперь выводим количество конкретной пиццы из obj.count */}
                 <span className={styles.countBadge}>{obj.count} шт.</span>
-                <button onClick={() => handlePlus(obj)}>+</button>
+                <button disabled={isUpdating} onClick={() => handlePlus(obj)}>
+                  +
+                </button>
               </div>
             </div>
           ))}
+          {/* НИЖНИЙ БЛОК: Статистика и кнопки действий */}
+          <div className={styles.cartBottom}>
+            {/* Ряд с количеством и итоговой суммой */}
+           
+            <div className={styles.cartBottomDetails}>
+              <span>
+                Всего пицц: <b>{items.length} шт.</b>
+              </span>
+              <span>
+                Сумма заказа: <b className={styles.totalPrice}>{totalPrice} ₽</b>
+              </span>
+            </div>
+
+            {/* Ряд с кнопками возврата и оплаты */}
+            <div className={styles.cartBottomButtons}>
+              <Link to="/">
+              <button className={styles.backBtn}><img src={leftpath} className={styles.leftpath}/> Вернуться назад</button>
+              </Link>
+
+              <button className={styles.checkoutBtn}>Оплатить сейчас</button>
+            </div>
+          </div>
+            
         </div>
       ) : (
         <div className={styles.emptyCart}>
