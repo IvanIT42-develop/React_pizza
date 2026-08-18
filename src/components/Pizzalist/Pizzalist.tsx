@@ -1,8 +1,14 @@
 import React from 'react';
 import PizzaCard from '../PizzaCard/PizzaCard';
 import styles from './PizzaList.module.scss'; // Импорт стилей
+import { Pizza } from '../../App';
+import { images } from '../../App';
+interface PizzaListProps{
+  items:Pizza[];
+  imageMap:images;
+}
+function PizzaList({ items, imageMap }:PizzaListProps) {
 
-function PizzaList({ items, imageMap }) {
 
   if (items.length === 0) {
     return (
@@ -13,19 +19,19 @@ function PizzaList({ items, imageMap }) {
     );
   }
 
-  return (
+ else{ return (
     <div className={styles.allpizzas}>
-      {items.map((obj) => (
+      {items.map((obj:Pizza) => (
         <PizzaCard 
           key={obj.id} 
           {...obj} 
           imageMap={imageMap} 
           id={obj.id} 
-          kmjkjmdf={items}
+          
         />
       ))}
     </div>
-  );
+  );}
 }
 
 export default PizzaList;

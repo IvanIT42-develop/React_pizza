@@ -5,14 +5,15 @@ import { useContext } from 'react';
 function Categories() {
   
  const{activeCategory, setActiveCategory}=useContext(AppContext)
-  const setCategory = (index) => {
+  const setCategory = (index:number) => {
     setActiveCategory(index);
   };
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+ const categories: string[] = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
   return (
     <div className={styles.categories}>
       <ul>
-        {categories.map((categoryName, index) => (
+        {categories.map((categoryName, index:number) => (
           <li onClick={()=>{setCategory(index)}} key={index} className={activeCategory === index ? styles.active:''}>{categoryName}</li>
         ))}
       </ul>

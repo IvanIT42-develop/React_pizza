@@ -1,7 +1,7 @@
 import React from "react"
-import ContentLoader from "react-content-loader"
-
-const MyLoader = (props) => (
+import ContentLoader,{ IContentLoaderProps } from "react-content-loader"
+import { Pizza } from "../../App"
+const MyLoader = (props:IContentLoaderProps) => (
   <ContentLoader 
     speed={2}
     width={320} // Теперь совпадает с реальной карточкой

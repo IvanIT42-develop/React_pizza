@@ -2,12 +2,17 @@ import React, { useContext } from 'react'; // Добавили useContext
 import { AppContext } from '../../CreateContext';
 import styles from './Search-input.module.scss';
 import btnremove from '../../assets/img/btn-remove.png';
-
+export interface EventInterface {
+  target:{
+    value:string;
+    name:string;
+  }
+}
 function Searchinputandcontent_title() {
   // Берем данные напрямую из глобального контекста
   const { searchValue, setSearchValue } = useContext(AppContext);
 
-  const onChangeSearchInput = (event) => {
+  const onChangeSearchInput = (event:EventInterface) => {
     setSearchValue(event.target.value);
   };
   

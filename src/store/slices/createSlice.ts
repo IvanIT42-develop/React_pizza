@@ -54,3 +54,4 @@ const cartSlice = createSlice({
 // Не забываем экспортировать новый экшен minusItem
 export const { addItem, minusItem, clearItems, setItems } = cartSlice.actions; 
 export default cartSlice.reducer;
+// В самый низ файла store.ts

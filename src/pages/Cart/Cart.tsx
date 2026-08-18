@@ -1,25 +1,45 @@
-import React from 'react';
-import { useCart } from '../../hooks/useCart';
+import React, { useState, useEffect } from 'react';
 import styles from './Cart.module.css';
-import StartPageBtn from '../../components/startPageBtn/startPageBtn';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { addItem } from '../../store/slices/createSlice';
-import { useState } from 'react';
-import { minusItem } from '../../store/slices/createSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, minusItem } from '../../store/slices/createSlice';
 import leftpath from '../../assets/img/leftpath.png';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../store';
+import StartPageBtn from '../../components/startPageBtn/startPageBtn';
+import { CartItemFromServer, useCart } from '../../hooks/useCart';
+import { Pizza } from '../../App';
 
 function Cart() {
+  interface CartItem {
+    id: Pizza['id'];
+    imageUrl?: Pizza['imageUrl'];
+    title: Pizza['title'];
+    prices: Pizza['prices'];
+    size: number;
+    count: number;
+  }
+
   const { cartItems, setCartItems } = useCart();
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
+
+  // ИСПРАВЛЕНО: Правильная инициализация стейта загрузки
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
+
   const dispatch = useDispatch();
-  const [isUpdating, setIsUpdating] = useState(false);
-  // 1. Группируем товары перед отрисовкой
-  const groupedItems = cartItems.reduce((acc, item) => {
+
+  type CartItemId = CartItem['id'];
+  useEffect(() => {
+    if (cartItems !== undefined) {
+      setIsLoading(false);
+    }
+  }, [cartItems]);
+
+  // Группируем товары перед отрисовкой
+  const groupedItems = cartItems.reduce((acc: CartItem[], item: CartItemFromServer) => {
     const existingItem = acc.find(
-      (target) => target.title === item.title && target.size === item.size,
+      (target: CartItem) => target.title === item.title && target.size === item.size,
     );
     if (existingItem) {
       existingItem.count += 1;
@@ -27,25 +47,25 @@ function Cart() {
       acc.push({ ...item, count: 1 });
     }
     return acc;
-  }, []);
+  }, [] as CartItem[])
 
-  const deleteCartItem = async (id) => {
+  const deleteCartItem = async (id: CartItemId) => {
     try {
       await axios.delete(`https://e5925c51acc6c42b.mokky.dev/cartItems/${id}`);
-      setCartItems((prev) => prev.filter((item) => item.id !== id));
+      setCartItems((prev) => prev.filter((item: CartItemFromServer) => item.id !== id));
     } catch (error) {
       console.error(error);
       alert('Ошибка при удалении');
     }
   };
 
-  const handleMinus = async (obj) => {
+  const handleMinus = async (obj: CartItem) => {
     if (obj.count === 1) {
       await deleteCartItem(obj.id);
-      dispatch(minusItem(itemToDelete.id));
+      dispatch(minusItem(obj.id)); // ИСПРАВЛЕНО: была переменная itemToDelete, которой еще нет в этой ветке
     } else {
       const itemToDelete = cartItems.find(
-        (item) => item.title === obj.title && item.size === obj.size,
+        (item: CartItemFromServer) => item.title === obj.title && item.size === obj.size,
       );
       if (itemToDelete) {
         await deleteCartItem(itemToDelete.id);
@@ -54,7 +74,7 @@ function Cart() {
     }
   };
 
-  const handlePlus = async (obj) => {
+  const handlePlus = async (obj: CartItem) => {
     if (isUpdating) return;
     try {
       setIsUpdating(true);
@@ -69,28 +89,20 @@ function Cart() {
     }
   };
 
-  const del = async (obj) => {
-    const itemsToDelete = cartItems.filter(
-      (item) => item.title === obj.title && item.size === obj.size,
+  // 1. ДОБАВЛЕНО: Проверка на процесс загрузки. Экран не будет моргать "пустой корзиной"
+  if (isLoading) {
+    return (
+      <div className={styles.cartWrapper}>
+        <h2 className={styles.title}>Загрузка корзины...</h2>
+        <div className={styles.loadingSpinner}>
+          {/* Здесь может быть ваш спиннер или скелетон */}
+          <p>Пожалуйста, подождите, мы собираем вашу корзину 🍕</p>
+        </div>
+      </div>
     );
-    try {
-      await Promise.all(
-        itemsToDelete.map((item) => {
-          return axios.delete(`https://e5925c51acc6c42b.mokky.dev/cartItems/${item.id}`);
-        }),
-      );
-      setCartItems((prev) =>
-        prev.filter((item) => !(item.title === obj.title && item.size === obj.size)),
-      );
-    } catch (error) {
-      alert('Не удалось удалить товар из корзины');
-    } finally {
-      setIsUpdating(false);
-    }
-  };
+  }
 
-  // УДАЛИЛИ КРИВОЙ КУСОК С ПЕРЕМЕННОЙ pizzaCount
-
+  // 2. Основной рендер (срабатывает только когда isLoading === false)
   return (
     <div className={styles.cartWrapper}>
       <h2 className={styles.title}>Корзина</h2>
@@ -103,12 +115,10 @@ function Cart() {
                 <p>
                   {obj.title} ({obj.size} см)
                 </p>{' '}
-                {/* Добавили вывод размера в название */}
                 <b>{(obj.prices?.[obj.size] || 0) * obj.count} руб.</b>
               </div>
-              <div className={styles?.countControl || styles.countControl}>
+              <div className={styles.countControl}>
                 <button onClick={() => handleMinus(obj)}> - </button>
-                {/* ИСПРАВЛЕНО: Теперь выводим количество конкретной пиццы из obj.count */}
                 <span className={styles.countBadge}>{obj.count} шт.</span>
                 <button disabled={isUpdating} onClick={() => handlePlus(obj)}>
                   +
@@ -116,10 +126,8 @@ function Cart() {
               </div>
             </div>
           ))}
-          {/* НИЖНИЙ БЛОК: Статистика и кнопки действий */}
+
           <div className={styles.cartBottom}>
-            {/* Ряд с количеством и итоговой суммой */}
-           
             <div className={styles.cartBottomDetails}>
               <span>
                 Всего пицц: <b>{items.length} шт.</b>
@@ -129,16 +137,15 @@ function Cart() {
               </span>
             </div>
 
-            {/* Ряд с кнопками возврата и оплаты */}
             <div className={styles.cartBottomButtons}>
               <Link to="/">
-              <button className={styles.backBtn}><img src={leftpath} className={styles.leftpath}/> Вернуться назад</button>
+                <button className={styles.backBtn}>
+                  <img src={leftpath} className={styles.leftpath} alt="Назад" /> Вернуться назад
+                </button>
               </Link>
-
               <button className={styles.checkoutBtn}>Оплатить сейчас</button>
             </div>
           </div>
-            
         </div>
       ) : (
         <div className={styles.emptyCart}>
